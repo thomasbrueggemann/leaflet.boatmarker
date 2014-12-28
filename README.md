@@ -8,7 +8,9 @@ A leaflet boat marker using HTML Canvas
 ### Usage
 
 ```javascript
-  var boatMarker = new L.Marker.Boat(map.getCenter(), { color: "#f1c40f" });
+  var boatMarker = new L.Marker.Boat(map.getCenter(), { 
+    color: "#f1c40f" 
+  });
 ```
 
 ##### setHeading(heading)
