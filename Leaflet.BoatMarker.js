@@ -1,19 +1,15 @@
 /* BOAT ICON */
 L.Icon.Boat = L.Icon.extend({
 	options: {
-		iconSize: new L.Point(50, 50), // Have to be supplied
-		/*
-		iconAnchor: (Point)
-		popupAnchor: (Point)
-		*/
+		iconSize: new L.Point(47, 47),
 		className: "leaflet-canvas-icon",
 		course: 0,
-		x: 20,
+		x: 15,
 		y: 35,
 		x_fac: 0.18,
 		y_fac: 0.18,
 		color: "#8ED6FF",
-		labelAnchor: [20, 4]
+		labelAnchor: [23, 0]
 	},
 
 	ctx: null,
