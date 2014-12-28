@@ -3,17 +3,17 @@
 	<title>Leaflet BoatMarker</title>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
 	<link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css">
-	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-	<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
-	<script src="Leaflet.BoatMarker.js"></script>
 </head>
 <body>
 	<div style="width:100%; height:100%" id="map"></div>
+
+	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+	<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+	<script src="Leaflet.BoatMarker.js"></script>
 	<script type="text/javascript">
 
 		var map = new L.Map("map", {center: new L.LatLng(54.211647, 12.006191), zoom: 12});
 		map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
-
 
 		var boatMarker = new L.Marker.Boat(map.getCenter(), { color: "#f1c40f" });
 		boatMarker.bindLabel("Sailyacht", { noHide: true, direction: "auto" });
@@ -25,6 +25,5 @@
 		}, 2000);
 
 	</script>
- 
 </body>
 </html>
