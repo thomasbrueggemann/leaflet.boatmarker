@@ -1,5 +1,5 @@
 /* BOAT ICON */
-L.Icon.Boat = L.Icon.extend({
+L.BoatIcon = L.Icon.extend({
 	options: {
 		iconSize: new L.Point(47, 47),
 		className: "leaflet-canvas-icon",
@@ -13,6 +13,7 @@ L.Icon.Boat = L.Icon.extend({
 	},
 
 	ctx: null,
+	lastHeading: 0,
 
 	createIcon: function () {
 		var e = document.createElement("canvas");
@@ -30,6 +31,7 @@ L.Icon.Boat = L.Icon.extend({
 	},
 
 	draw: function(ctx, w, h) {
+		if(!ctx) return;
 		var x = this.options.x;
 		var y = this.options.y;
 
@@ -53,29 +55,10 @@ L.Icon.Boat = L.Icon.extend({
 		ctx.closePath();
 	},
 
-	setHeading: function(course) {
-		this.options.course = course % 360;
+	setHeading: function(heading) {
+		this.options.course = (heading % 360) - this.lastHeading;
+		this.lastHeading = heading % 360;
 		var s = this.options.iconSize;
 		this.draw(this.ctx, s.x, s.y);
-	}
-});
-
-/* BOAT MARKER */
-L.Marker.Boat = L.Marker.extend({
-
-	options: {
-		color: "#f1c40f"
-	},
-
-	initialize: function (latlng, options) {
-		L.setOptions(this, options);
-	
-		this.options.icon = new L.Icon.Boat({ color: this.options.color })
-		
-		this._latlng = L.latLng(latlng);
-	},
-
-	setHeading: function(course) {
-		this.options.icon.setHeading(course);
 	}
 });
