@@ -1,11 +1,11 @@
 /* BOAT ICON */
 L.BoatIcon = L.Icon.extend({
 	options: {
-		iconSize: new L.Point(47, 47),
+		iconSize: new L.Point(100, 100),
 		className: "leaflet-canvas-icon",
 		course: 0,
-		x: 15,
-		y: 35,
+		x: 45,
+		y: 45,
 		x_fac: 0.18,
 		y_fac: 0.18,
 		color: "#8ED6FF",
@@ -44,6 +44,9 @@ L.BoatIcon = L.Icon.extend({
 		ctx.rotate(this.options.course*Math.PI/180);
 		ctx.translate(-w/2, -h/2);
 
+		ctx.fillRect(0,0,w,h);
+
+		// draw boat
 		ctx.beginPath();
 		ctx.moveTo(x, y);
 		ctx.bezierCurveTo(x, y+(80*y_fac), x+(100*x_fac), y+(80*y_fac), x+(100*x_fac), y);
