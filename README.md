@@ -5,6 +5,10 @@ A leaflet boat marker using HTML Canvas
 
 ![Demo Image](http://i.imgur.com/H4q765r.png)
 
+With wind optional arrow:
+
+![Demo Image](http://i.imgur.com/KYZaG8C.png)
+
 ### Usage
 
 ```javascript
