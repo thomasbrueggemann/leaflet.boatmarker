@@ -62,3 +62,17 @@ L.BoatIcon = L.Icon.extend({
 		this.draw(this.ctx, s.x, s.y);
 	}
 });
+
+L.BoatMarker = L.Marker.extend({
+  	setHeading: function(heading) {
+  		this.options.icon.setHeading(heading);
+  	}
+});
+
+L.boatMarker = function(pos, options) {
+
+	var c = ("color" in options) ? options.color : "#f1c40f";
+	options.icon = new L.BoatIcon({ color: c});
+	
+    return new L.BoatMarker(pos, options);
+};

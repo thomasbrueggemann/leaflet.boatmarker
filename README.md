@@ -8,8 +8,8 @@ A leaflet boat marker using HTML Canvas
 ### Usage
 
 ```javascript
-var boatMarker = new L.marker(map.getCenter(), {
-  	icon: new L.BoatIcon({ color: "#f1c40f" })
+var boatMarker = L.boatMarker(map.getCenter(), {
+  	color: "#f1c40f"
 });
 ```
 
@@ -18,5 +18,5 @@ var boatMarker = new L.marker(map.getCenter(), {
 Sets the current heading of the boat to an angle value between 0 and 360 degrees.
 
 ```javascript
-boatMarker.options.icon.setHeading(60);
+boatMarker..setHeading(60);
 ```

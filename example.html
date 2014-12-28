@@ -15,7 +15,7 @@
 		var map = new L.Map("map", {center: new L.LatLng(54.211647, 12.006191), zoom: 12});
 		map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
 
-		var boatMarker = new L.Marker.Boat(map.getCenter(), { color: "#f1c40f" });
+		var boatMarker = L.boatMarker(map.getCenter(), { color: "#f1c40f" });
 		boatMarker.bindLabel("Sailyacht", { noHide: true, direction: "auto" });
 
 		map.addLayer(boatMarker);
