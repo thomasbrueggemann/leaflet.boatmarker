@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Leaflet</title>
+	<title>Leaflet BoatMarker</title>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
 	<link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css">
 	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
@@ -11,7 +11,7 @@
 	<div style="width:100%; height:100%" id="map"></div>
 	<script type="text/javascript">
 
-		var map = new L.Map("map", {center: new L.LatLng(50.938495, 6.905464), zoom: 10});
+		var map = new L.Map("map", {center: new L.LatLng(54.211647, 12.006191), zoom: 12});
 		map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
 
 
@@ -21,7 +21,7 @@
 		map.addLayer(boatMarker);
 
 		window.setTimeout(function() {
-			boatMarker.setCourse(20);
+			boatMarker.setCourse(60);
 		}, 2000);
 
 	</script>

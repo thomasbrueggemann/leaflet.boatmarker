@@ -12,7 +12,8 @@ L.Icon.Boat = L.Icon.extend({
 		y: 35,
 		x_fac: 0.18,
 		y_fac: 0.18,
-		color: "#8ED6FF"
+		color: "#8ED6FF",
+		labelAnchor: [20, 4]
 	},
 
 	ctx: null,
@@ -79,6 +80,6 @@ L.Marker.Boat = L.Marker.extend({
 	},
 
 	setCourse: function(course) {
-		this.options.icon.setCourse(course);
+		this.options.icon.setCourse(course % 360);
 	}
 });
