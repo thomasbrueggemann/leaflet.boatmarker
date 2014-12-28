@@ -1,19 +1,23 @@
 /* BOAT ICON */
 L.BoatIcon = L.Icon.extend({
 	options: {
-		iconSize: new L.Point(100, 100),
-		className: "leaflet-canvas-icon",
+		iconSize: new L.Point(150, 150),
+		className: "leaflet-boat-icon",
 		course: 0,
-		x: 45,
-		y: 45,
-		x_fac: 0.18,
-		y_fac: 0.18,
 		color: "#8ED6FF",
-		labelAnchor: [23, 0]
+		labelAnchor: [23, 0],
+		wind: false,
+		windDirection: 0,
+		windSpeed: 0
 	},
 
+	x: 66,
+	y: 85,
+	x_fac: 0.18,
+	y_fac: 0.18,
 	ctx: null,
 	lastHeading: 0,
+	lastWindDirection: 0,
 
 	createIcon: function () {
 		var e = document.createElement("canvas");
@@ -32,11 +36,11 @@ L.BoatIcon = L.Icon.extend({
 
 	draw: function(ctx, w, h) {
 		if(!ctx) return;
-		var x = this.options.x;
-		var y = this.options.y;
+		var x = this.x;
+		var y = this.y;
 
-		var x_fac = this.options.x_fac;
-		var y_fac = this.options.y_fac;
+		var x_fac = this.x_fac;
+		var y_fac = this.y_fac;
 
 		ctx.clearRect(0, 0, w, h);
 
@@ -44,7 +48,7 @@ L.BoatIcon = L.Icon.extend({
 		ctx.rotate(this.options.course*Math.PI/180);
 		ctx.translate(-w/2, -h/2);
 
-		ctx.fillRect(0,0,w,h);
+		//ctx.fillRect(0,0,w,h);
 
 		// draw boat
 		ctx.beginPath();
@@ -56,17 +60,70 @@ L.BoatIcon = L.Icon.extend({
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
+
+		// draw wind
+		if(this.options.wind == true) {
+
+			ctx.translate(w/2, h/2);
+			ctx.rotate(this.options.windDirection*Math.PI/180);
+			ctx.translate(-w/2, -h/2);
+
+			ctx.beginPath();
+			ctx.moveTo(w/2, y-45);
+			ctx.lineTo(w/2, y-70);
+
+			var center = w/2;
+
+			var spd = 5 * Math.round(this.options.windSpeed / 5);
+			var tenLines = Math.floor(spd / 10);
+			var fiveLine = ((spd % 10) > 0);
+
+			var carriage = 70;
+			for(var i = 0; i < tenLines; i++) {
+				ctx.moveTo(center, y - carriage);
+				ctx.lineTo(center + 8, y - carriage - 8);
+				carriage -= 5;
+			}
+
+			if(fiveLine) {
+				if(tenLines == 0) carriage -= 5;
+				ctx.moveTo(center, y - carriage);
+				ctx.lineTo(center + 5, y - carriage - 5);
+			}
+
+      		ctx.stroke();
+		}
+	},
+
+	set: function(heading, windSpeed, windDirection) {
+		this.options.wind = true;
+
+		this.options.course = (heading % 360) - this.lastHeading;
+		this.lastHeading = heading % 360;
+
+		this.options.windDirection = (windDirection % 360) - (heading % 360);
+		this.lastHeading += this.options.windDirection;
+
+		this.options.windSpeed = windSpeed;
+
+		var s = this.options.iconSize;
+		this.draw(this.ctx, s.x, s.y);
 	},
 
 	setHeading: function(heading) {
 		this.options.course = (heading % 360) - this.lastHeading;
 		this.lastHeading = heading % 360;
+
 		var s = this.options.iconSize;
 		this.draw(this.ctx, s.x, s.y);
 	}
 });
 
 L.BoatMarker = L.Marker.extend({
+  	set: function(heading, windSpeed, windDirection) {
+  		this.options.icon.set(heading, windSpeed, windDirection);
+  	},
+
   	setHeading: function(heading) {
   		this.options.icon.setHeading(heading);
   	}
