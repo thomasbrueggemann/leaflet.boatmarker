@@ -57,8 +57,8 @@ L.Icon.Boat = L.Icon.extend({
 		ctx.closePath();
 	},
 
-	setCourse: function(course) {
-		this.options.course = course;
+	setHeading: function(course) {
+		this.options.course = course % 360;
 		var s = this.options.iconSize;
 		this.draw(this.ctx, s.x, s.y);
 	}
@@ -79,7 +79,7 @@ L.Marker.Boat = L.Marker.extend({
 		this._latlng = L.latLng(latlng);
 	},
 
-	setCourse: function(course) {
-		this.options.icon.setCourse(course % 360);
+	setHeading: function(course) {
+		this.options.icon.setHeading(course);
 	}
 });

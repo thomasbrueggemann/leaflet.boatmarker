@@ -11,10 +11,10 @@ A leaflet boat marker using HTML Canvas
   var boatMarker = new L.Marker.Boat(map.getCenter(), { color: "#f1c40f" });
 ```
 
-##### setCourse(course)
+##### setHeading(heading)
 
-Sets the current course of the boat to an angle value between 0 and 360 degrees.
+Sets the current heading of the boat to an angle value between 0 and 360 degrees.
 
 ```javascript
-boatMarker.setCourse(60);
+boatMarker.setHeading(60);
 ```
