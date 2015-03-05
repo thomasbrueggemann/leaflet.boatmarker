@@ -31,7 +31,7 @@ boatMarker.setHeading(60);
 
 Sets the current heading of the boat to an angle value between 0 and 360 degrees,
 the current wind direction to an angle value between 0 and 360 degress and the wind
-speed following this weather wind arrow specification http://www.wetterklima.de/segeln/windpfeile/bf.htm
+speed (in knots) following this weather wind arrow specification http://www.wetterklima.de/segeln/windpfeile/bf.htm
 
 ```javascript
 boatMarker.set(60, 4.5, 20);
