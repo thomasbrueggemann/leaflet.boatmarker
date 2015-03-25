@@ -95,7 +95,7 @@ L.BoatIcon = L.Icon.extend({
 		}
 	},
 
-	set: function(heading, windSpeed, windDirection) {
+	setHeadingWind: function(heading, windSpeed, windDirection) {
 		this.options.wind = true;
 
 		this.options.course = (heading % 360) - this.lastHeading;
