@@ -120,8 +120,8 @@ L.BoatIcon = L.Icon.extend({
 });
 
 L.BoatMarker = L.Marker.extend({
-  	set: function(heading, windSpeed, windDirection) {
-  		this.options.icon.set(heading, windSpeed, windDirection);
+  	setHeadingWind: function(heading, windSpeed, windDirection) {
+  		this.options.icon.setHeadingWind(heading, windSpeed, windDirection);
   	},
 
   	setHeading: function(heading) {
