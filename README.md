@@ -1,13 +1,10 @@
 Leaflet.BoatMarker
 ==================
 
-A leaflet boat marker using HTML Canvas.
+A leaflet boat marker using HTML Canvas. 
+Checkout the [Demo](http://tomaszbrue.github.io/leaflet.boatmarker/).
 
-Can be used to symbolize sailboats/sailyachts or motorboats/motoryachts with additional wind information.
-
-![Demo Image](http://i.imgur.com/H4q765r.png)
-
-With optional wind arrow:
+Can be used to symbolize sailboats/sailyachts or motorboats/motoryachts with optional wind information.
 
 ![Demo Image](http://i.imgur.com/KYZaG8C.png)
 
