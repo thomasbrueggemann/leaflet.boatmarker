@@ -1,3 +1,9 @@
+/*
+ * LEAFLET.BOATMARKER
+ * v1.0.0
+ * Thomas Brüggemann
+ */
+
 /* BOAT ICON */
 L.BoatIcon = L.Icon.extend({
 	options: {
