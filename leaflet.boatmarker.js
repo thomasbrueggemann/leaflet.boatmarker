@@ -31,6 +31,7 @@ L.BoatIcon = L.Icon.extend({
 		var s = this.options.iconSize;
 		e.width = s.x;
 		e.height = s.y;
+		this.lastHeading = 0;   // reset in case the marker is removed and added again
 		this.ctx = e.getContext("2d");
 		this.draw(e.getContext("2d"), s.x, s.y);
 		return e;
