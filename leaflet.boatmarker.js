@@ -24,8 +24,7 @@ L.BoatIcon = L.Icon.extend({
 	// PROPERTIES
 	x: 66,
 	y: 85,
-	x_fac: 0.18,
-	y_fac: 0.18,
+	scale: 0.18,
 	ctx: null,
 	lastHeading: 0,
 	lastWindDirection: 0,
@@ -54,8 +53,8 @@ L.BoatIcon = L.Icon.extend({
 		var x = this.x;
 		var y = this.y;
 
-		var x_fac = this.x_fac;
-		var y_fac = this.y_fac;
+		var scale = this.scale;
+		var scale = this.scale;
 
 		ctx.clearRect(0, 0, w, h);
 
@@ -69,14 +68,14 @@ L.BoatIcon = L.Icon.extend({
 
 		// draw idle boat shape
 		if(this.options.idleCircle === true && this.options.speed === 0) {
-			ctx.arc(x+(50*x_fac), y-(50*y_fac), 50*x_fac, 0, 2 * Math.PI);
+			ctx.arc(x+(50*scale), y-(50*scale), 50*scale, 0, 2 * Math.PI);
 		}
 		// draw boat shape in motion
 		else {
 			ctx.moveTo(x, y);
-			ctx.bezierCurveTo(x, y+(80*y_fac), x+(100*x_fac), y+(80*y_fac), x+(100*x_fac), y);
-			ctx.quadraticCurveTo(x+(100*x_fac), y-(100*y_fac), x+(50*x_fac), y-(200*y_fac));
-			ctx.quadraticCurveTo(x, y-(100*y_fac), x, y);
+			ctx.bezierCurveTo(x, y+(80*scale), x+(100*scale), y+(80*scale), x+(100*scale), y);
+			ctx.quadraticCurveTo(x+(100*scale), y-(100*scale), x+(50*scale), y-(200*scale));
+			ctx.quadraticCurveTo(x, y-(100*scale), x, y);
 		}
 
 		ctx.fillStyle = this.options.color;
@@ -152,6 +151,14 @@ L.BoatIcon = L.Icon.extend({
 
 		var s = this.options.iconSize;
 		this.draw(this.ctx, s.x, s.y);
+	},
+
+	// SET SCALE
+	setScale: function(scale) {
+		this.scale = scale;
+
+		var s = this.options.iconSize;
+		this.draw(this.ctx, s.x, s.y);
 	}
 });
 
@@ -171,5 +178,20 @@ L.boatMarker = function(pos, options) {
 	var i = ("idleCircle" in options) ? options.idleCircle : false;
 	options.icon = new L.BoatIcon({ color: c, idleCircle: i});
 
-    return new L.BoatMarker(pos, options);
+	var boatmarker = new L.BoatMarker(pos, options);
+
+	// as soon as the marker is added to the map, attach a zoom event listener
+	boatmarker.on("add", function(e) {
+		e.target._map.on("zoomend", function(e) {
+
+			var zoom = e.target._zoom;
+			var scale = 0.013 * zoom + 0.008;
+			scale = Math.min(scale, 0.19);
+			scale = Math.max(scale, 0.06);
+
+			boatmarker.options.icon.setScale(scale);
+		});
+	});
+
+    return boatmarker;
 };
