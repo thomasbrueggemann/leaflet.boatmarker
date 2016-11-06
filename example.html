@@ -9,7 +9,7 @@
 
 	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
 	<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
-	<script src="Leaflet.BoatMarker.js"></script>
+	<script src="leaflet.boatmarker.js"></script>
 	<script type="text/javascript">
 
 		var map = new L.Map("map", {center: new L.LatLng(54.211647, 12.006191), zoom: 12});
@@ -26,7 +26,7 @@
 			var crs = Math.floor(Math.random() * 90) + 1
 			var wnd_dir = Math.floor(Math.random() * 45) + 1
 			var wnd_spd = Math.floor(Math.random() * 35) + 1
-			
+
 			boatMarker.setHeadingWind(crs, wnd_spd, wnd_dir);
 		}, 2000);
 

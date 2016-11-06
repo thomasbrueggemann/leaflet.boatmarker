@@ -1,7 +1,7 @@
 Leaflet.BoatMarker
 ==================
 
-A leaflet boat marker using HTML Canvas. 
+A leaflet boat marker using HTML Canvas.
 Checkout the [Demo](http://thomasbrueggemann.github.io/leaflet.boatmarker/).
 
 Can be used to symbolize sailboats/sailyachts or motorboats/motoryachts with optional wind information.
@@ -12,7 +12,9 @@ Can be used to symbolize sailboats/sailyachts or motorboats/motoryachts with opt
 
 ```javascript
 var boatMarker = L.boatMarker(map.getCenter(), {
-  	color: "#f1c40f"
+  	color: "#f1c40f", 	// color of the boat
+	idleCircle: false	// if set to true, the icon will draw a circle if
+						// boatspeed == 0 and the ship-shape if speed > 0
 });
 ```
 
@@ -32,4 +34,12 @@ speed (in knots) following this weather wind arrow specification http://www.wett
 
 ```javascript
 boatMarker.setHeadingWind(60, 4.5, 20);
+```
+
+##### setSpeed(speed)
+
+Set the current speed of the boat to a value > 0
+
+```javascript
+boatMarker.setSpeed(12.9);
 ```
