@@ -162,7 +162,11 @@ L.BoatMarker = L.Marker.extend({
 
   	setHeading: function(heading) {
   		this.options.icon.setHeading(heading);
-  	}
+  	},
+
+	setSpeed: function(speed) {
+		this.options.icon.setSpeed(speed);
+	}
 });
 
 L.boatMarker = function(pos, options) {
