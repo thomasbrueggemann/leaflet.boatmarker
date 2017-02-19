@@ -1,4 +1,4 @@
-# ⛵️ Leaflet.BoatMarker
+# ⛵️ Leaflet.BoatMarker [![npm version](https://badge.fury.io/js/leaflet.boatmarker.svg)](https://badge.fury.io/js/leaflet.boatmarker)
 
 A leaflet boat marker using HTML Canvas.
 Checkout the [Demo](https://thomasbrueggemann.github.io/leaflet.boatmarker/).
