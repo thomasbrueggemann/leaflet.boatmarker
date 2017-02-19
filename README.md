@@ -1,12 +1,27 @@
-Leaflet.BoatMarker
-==================
+# ⛵️ Leaflet.BoatMarker
 
 A leaflet boat marker using HTML Canvas.
 Checkout the [Demo](http://thomasbrueggemann.github.io/leaflet.boatmarker/).
 
 Can be used to symbolize sailboats/sailyachts or motorboats/motoryachts with optional wind information.
 
-![Demo Image](http://i.imgur.com/KYZaG8C.png)
+<center>
+	<img src="http://i.imgur.com/KYZaG8C.png" />
+</center
+
+### Installation
+
+Either include the script directly
+
+```javascript
+<script src="https://rawgit.com/thomasbrueggemann/leaflet.boatmarker/master/leaflet.boatmarker.min.js"></script>
+```
+
+or use in a build script via npm
+
+```bash
+npm i leaflet.boatmarker --save
+```
 
 ### Usage
 

@@ -1,0 +1,31 @@
+{
+  "name": "leaflet.boatmarker",
+  "version": "1.1.4",
+  "description": "⛵️ A leaflet boat marker using HTML Canvas",
+  "main": "leaflet.boatmarker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasbrueggemann/leaflet.boatmarker.git"
+  },
+  "keywords": [
+    "leaflet",
+    "boat",
+    "yacht",
+    "sailboat",
+    "motorboat",
+    "sailing",
+    "marker",
+    "icon",
+    "wind",
+    "windspeed"
+  ],
+  "author": "Thomas Brüggemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thomasbrueggemann/leaflet.boatmarker/issues"
+  },
+  "homepage": "https://github.com/thomasbrueggemann/leaflet.boatmarker#readme"
+}
