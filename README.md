@@ -7,17 +7,17 @@ Can be used to symbolize sailboats/sailyachts or motorboats/motoryachts with opt
 
 <center>
 	<img src="http://i.imgur.com/KYZaG8C.png" />
-</center
+</center>
 
 ### Installation
 
-Either include the script directly
+* Include the script directly
 
 ```javascript
-<script src="https://rawgit.com/thomasbrueggemann/leaflet.boatmarker/master/leaflet.boatmarker.min.js"></script>
+<script src="https://unpkg.com/leaflet.boatmarker/leaflet.boatmarker.min.js"></script>
 ```
 
-or use in a build script via npm
+* Use in a build script via npm
 
 ```bash
 npm i leaflet.boatmarker --save
