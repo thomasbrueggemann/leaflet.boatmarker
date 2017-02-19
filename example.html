@@ -1,35 +1,67 @@
+
 <html>
-<head>
-	<title>Leaflet BoatMarker</title>
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
-	<link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css">
-</head>
-<body>
-	<div style="width:100%; height:100%" id="map"></div>
+	<head>
+		<title>Leaflet.Boatmarker Demo</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
+		<style>
+			html, body {
+				padding:0px;
+				margin:0px;
+				height:100%;
+				width:100%;
+			}
 
-	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-	<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
-	<script src="leaflet.boatmarker.js"></script>
-	<script type="text/javascript">
+			#map {
+				width:100%;
+				height:100%;
+			}
+		</style>
+	</head>
 
-		var map = new L.Map("map", {center: new L.LatLng(54.211647, 12.006191), zoom: 12});
-		map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
+	<body>
+		<div id="map"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+		<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js"></script>
+		<script src="leaflet.boatmarker.min.js"></script>
 
-		var boatMarker = L.boatMarker(map.getCenter(), { color: "#f1c40f" });
-		boatMarker.bindLabel("Sailyacht", { noHide: true, direction: "auto" });
+		<script>
+			// create a map in the "map" div, set the view to a given place and zoom
+			var map = L.map("map").setView([54.199343, 12.020497], 13);
 
-		boatMarker.setHeading(90);
+			// add an OpenStreetMap tile layer
+			L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+			    attribution: "&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
+			}).addTo(map);
 
-		map.addLayer(boatMarker);
+			// add the boatmarker at a startpoint
+			var boatMarker = L.boatMarker(map.getCenter(), {
+			    color: "#f1c40f"
+			}).addTo(map);
 
-		window.setInterval(function() {
-			var crs = Math.floor(Math.random() * 90) + 1
-			var wnd_dir = Math.floor(Math.random() * 45) + 1
-			var wnd_spd = Math.floor(Math.random() * 35) + 1
+			boatMarker.setHeading(60);
 
-			boatMarker.setHeadingWind(crs, wnd_spd, wnd_dir);
-		}, 2000);
+			function getRandomArbitrary(min, max) {
+			    return Math.random() * (max - min) + min;
+			}
 
-	</script>
-</body>
+			var heading = 60;
+
+			// start simulation
+			window.setInterval(function() {
+
+				var speed = getRandomArbitrary(8.0, 16.0);
+				var direction = getRandomArbitrary((heading - 50) % 360, (heading - 40) % 360);
+
+				if(heading > 30)
+					heading -= 0.5;
+
+				boatMarker.setHeadingWind(heading, speed, direction);
+
+				var destination = turf.destination(boatMarker.toGeoJSON(), 0.02, 60, "kilometers");
+				boatMarker.setLatLng(destination.geometry.coordinates.reverse());
+
+			}, 488);
+		</script>
+	</body>
 </html>
